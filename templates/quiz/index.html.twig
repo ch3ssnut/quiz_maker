@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuizController!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    {% if quizes %}
+        {% for quiz in quizes %}
+            <div class="quiz">
+                <div class="name">{{ quiz.name }}</div>
+            </div>
+            <div class="delete_quiz">
+                <a href="{{ path('app_quiz_delete', { 'id':quiz.id}) }}" class="delete">Delete</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+{{ form_start(form) }}
+
+    <div class="form">
+        {# <div class="errors">
+            {{ form_errors(form)}}
+        </div> #}
+        <div class="">
+            {{ form_label(form.name, 'Name' ,{'label_attr': {'class': 'label'}})}}
+            {{ form_widget(form.name, {'attr': {'class': 'form_widget'}})}}
+
+        </div>
+    </div>
+
+{{ form_end(form) }}
+
+{% endblock %}
