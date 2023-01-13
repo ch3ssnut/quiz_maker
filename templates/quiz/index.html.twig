@@ -13,6 +13,9 @@
             <div class="delete_quiz">
                 <a href="{{ path('app_quiz_delete', { 'id':quiz.id}) }}" class="delete">Delete</a>
             </div>
+            <div class="edit_quiz">
+                <a href="{{ path('app_quiz_edit', { 'id':quiz.id}) }}" class="edit">Edit</a>
+            </div>
         {% endfor %}
     {% endif %}
 </div>
@@ -27,6 +30,8 @@
             {{ form_label(form.name, 'Name' ,{'label_attr': {'class': 'label'}})}}
             {{ form_widget(form.name, {'attr': {'class': 'form_widget'}})}}
 
+
+            {{ form_widget(form.Submit, {'attr': {'class': 'btn'}})}}
         </div>
     </div>
 

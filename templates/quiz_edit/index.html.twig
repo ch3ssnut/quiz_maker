@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuizEditController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="quiz_name">
+        {{quiz.name}}
+    </div>
+
+    <div class="form">
+        {{ form_start(form) }}
+            {{ form_label(form.name, 'Category name', {'label_attr': {'class': 'label'}}) }}
+            {{ form_widget(form.name, {'attr': {'class': 'widget'}})}}
+
+            {{ form_widget(form.type, {'attr': {'class': 'widget'}})}}
+
+            {{ form_widget(form.Submit, {'attr': {'class': 'btn'}})}}
+
+        {{ form_end(form) }}
+    </div>
+
+    <div class="categories">
+        {% if categories %}
+            {% for category in categories %}
+                <div class="category">
+                    <div class="category_name">
+                        {{category.name}}
+                    </div>
+                    <div class="category_type">
+                        {{category.type}}
+                    </div>
+                    <div class="buttons">
+                        <a href="{{path('app_homepage')}}" class="edit">Edit</a>
+                        <a href="{{path('app_homepage')}}" class="delete">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
