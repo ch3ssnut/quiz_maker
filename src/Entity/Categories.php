@@ -20,7 +20,7 @@ class Categories
 
     #[ORM\ManyToOne(inversedBy: 'categories')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?quiz $quiz = null;
+    private ?Quiz $quiz = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
@@ -50,12 +50,12 @@ class Categories
         return $this;
     }
 
-    public function getQuiz(): ?quiz
+    public function getQuiz(): ?Quiz
     {
         return $this->quiz;
     }
 
-    public function setQuiz(?quiz $quiz): self
+    public function setQuiz(?Quiz $quiz): self
     {
         $this->quiz = $quiz;
 

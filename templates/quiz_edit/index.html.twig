@@ -32,7 +32,7 @@
                     </div>
                     <div class="buttons">
                         <a href="{{path('app_homepage')}}" class="edit">Edit</a>
-                        <a href="{{path('app_homepage')}}" class="delete">Delete</a>
+                        <a href="{{path('app_category_delete',  {'id': category.id})}}" class="delete">Delete</a>
                     </div>
                 </div>
             {% endfor %}

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Categories;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,20 +40,21 @@ class CategoriesRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Categories[] Returns an array of Categories objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Categories[] Returns an array of Categories objects
+    */
+   public function findUserByCategoryId(int $id, $user)
+   {
+       return $this->createQueryBuilder('c')
+           ->andWhere('c.id = :id')
+           ->setParameter('id', $id)
+           ->join('c.quiz', 'q')
+           ->andWhere('q.owner = :user')
+           ->setParameter('user', $user)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Categories
 //    {
