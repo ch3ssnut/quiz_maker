@@ -18,7 +18,7 @@ class CategoriesType extends AbstractType
             ->add('name', TextType::class)
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    'standatd' => 'standard',
+                    'standard' => 'standard',
                     'rebus' => 'rebus',
                 ]
             ])
