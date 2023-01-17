@@ -3,35 +3,75 @@
 namespace App\Controller;
 
 use App\Entity\Categories;
+use App\Entity\Questions;
 use App\Entity\Quiz;
+use App\Form\QuestionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Console\Question\Question;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
-    #[Route('/category', name: 'app_category')]
-    public function index(): Response
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
     {
-        return $this->render('category/index.html.twig', [
-            'controller_name' => 'CategoryController',
+        $this->em = $em;
+    }
+
+    #[Route('/category/{id}', name: 'app_category')]
+    public function index(int $id, Request $request): Response
+    {
+
+        // check if user has permissions
+        $category = $this->em->getRepository(Categories::class)->findUserByCategoryId($id, $this->getUser())[0];
+        if(!$category) {
+            throw new Exception('Access denied');
+        }
+
+        $currentCategory = $this->em->getRepository(Categories::class)->find($id);
+        
+        //TODO: add form to add questions
+        $question = new Questions();
+        $question
+            ->setCategory($currentCategory)
+            ->setIsCompleted(false);
+        
+        $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            dd($form->getData());
+            $this->em->persist($form->getData());
+            $this->em->flush();
+        }
+
+        //get all questions to render
+        $questions = $this->em->getRepository(Questions::class)->findBy([
+            'category' => $currentCategory,
+        ]);
+        
+        return $this->render('category/edit.html.twig', [
+            'form' => $form->createView(),
+            'questions' => $questions,
+            'category' => $currentCategory,
         ]);
     }
 
     #[Route('/category/delete/{id}', name: 'app_category_delete')]
-    public function delete(int $id, EntityManagerInterface $em, Request $request): Response
+    public function delete(int $id, Request $request): Response
     {
-        $category = $em->getRepository(Categories::class)->findUserByCategoryId($id, $this->getUser())[0];
+        $category = $this->em->getRepository(Categories::class)->findUserByCategoryId($id, $this->getUser())[0];
 
         if(!$category) {
             throw new Exception('Access denied');
         }
 
-        $em->remove($category);
-        $em->flush();
+        $this->em->remove($category);
+        $this->em->flush();
 
         return $this->redirect($request->headers->get('referer'));
     }
