@@ -1,4 +1,33 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+    <script>
+
+        console.log('asdsd' )
+
+        jQuery(document).ready(function () {
+            jQuery('.add-anwser-widget').click(function (e) {
+                var list = jQuery(jQuery(this).attr('data-list-selector'));
+                // Try to find the counter of the list or use the length of the list
+                var counter = list.data('widget-counter') || list.children().length;
+
+                // grab the prototype template
+                var newWidget = list.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[emails][2]"
+                newWidget = newWidget.replace(/__name__/g, counter);
+                // Increase the counter
+                counter++;
+                // And store it, the length cannot be used if deleting widgets is allowed
+                list.data('widget-counter', counter);
+
+                // create a new list element and add it to the list
+                var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
+                newElem.appendTo(list);
+    });
+});
+    </script>
+{% endblock %}
 
 {% block title %}Hello QuizEditController!{% endblock %}
 
@@ -10,27 +39,38 @@
 
     <div class="form">
         {{ form_start(form) }}
-            {# {{ form_label(form.name, 'Category name', {'label_attr': {'class': 'label'}}) }}
-            {{ form_widget(form.name, {'attr': {'class': 'widget'}})}}
+            {{ form_label(form.content, 'Question', {'label_attr': {'class': 'label'}}) }}
+            {{ form_widget(form.content, {'attr': {'class': 'widget'}})}}
 
-            {{ form_widget(form.type, {'attr': {'class': 'widget'}})}}
+            {{ form_label(form.image, 'img', {'label_attr': {'class': 'label'}}) }}
+            {{ form_widget(form.image, {'attr': {'class': 'widget'}})}}
 
-            {{ form_widget(form.Submit, {'attr': {'class': 'btn'}})}} #}
+            <div id="email-fields-list"
+                data-prototype="{{ form_widget(form.anwsers.vars.prototype)|e }}"
+                data-widget-tags="{{ '<li></li>'|e }}"
+                data-widget-counter="{{ form.anwsers|length }}">
+                {# {% for anwserForm in form.anwsers %}
+                    <div class="">
+                        {{ form_errors(anwserForm) }}
+                        {{ form_label(anwserForm)}}
+                        {{ form_widget(anwserForm) }}
+                    </div>
+                {% endfor %} #}
 
-
-            <ul class="tags"
-                data-index="{{ form.tags|length > 0 ? form.tags|last.vars.name + 1 : 0 }}"
-                data-prototype="{{ form_widget(form.tags.vars.prototype)|e('html_attr') }}"
-            ></ul>
+                {{ form_row(form.anwsers)}}
+            </div>
+            <button type="button"
+                class="add-another-collection-widget"
+                data-list-selector="#email-fields-list">Add another email</button>
+            </a>
         {{ form_end(form) }}
     </div>
 
     <div class="question">
         {% if questions %}
-            {% for question in questions|keys %}
+            {% for question in questions %}
                 <div class="question">
                     <div class="question_name">
-                        {{keys}}
                     </div>
                     <div class="buttons">
                         <a href="{{path('app_category', {'id': category.id})}}" class="edit">Edit</a>

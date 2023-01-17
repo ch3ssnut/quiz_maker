@@ -18,8 +18,10 @@ class QuestionType extends AbstractType
             ->add('content', TextType::class)
             ->add('image')
             ->add('anwsers', CollectionType::class, [
-                'entry_type' => TagT::class,
+                'entry_type' => TextType::class,
                 'allow_add' => true,
+                'prototype' => true,
+                'prototype_data' => 'placeholder'
             ])
             ->add('Submit', SubmitType::class)
         ;
