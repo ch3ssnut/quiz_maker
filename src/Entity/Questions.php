@@ -22,9 +22,9 @@ class Questions
     #[ORM\Column]
     private ?bool $isCompleted = null;
 
-    #[ORM\ManyToOne(inversedBy: 'questions')]
+    #[ORM\ManyToOne(inversedBy: 'Questions')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?categories $category = null;
+    private ?Categories $category = null;
 
     #[ORM\Column(nullable: true)]
     private array $anwsers = [];
@@ -70,12 +70,12 @@ class Questions
         return $this;
     }
 
-    public function getCategory(): ?categories
+    public function getCategory(): ?Categories
     {
         return $this->category;
     }
 
-    public function setCategory(?categories $category): self
+    public function setCategory(?Categories $category): self
     {
         $this->category = $category;
 

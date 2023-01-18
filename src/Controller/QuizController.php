@@ -90,6 +90,7 @@ class QuizController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $em->persist($form->getData());
             $em->flush();
+            return $this->redirect($request->getUri());
         }
 
 
