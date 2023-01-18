@@ -21,7 +21,8 @@ class QuestionType extends AbstractType
                 'entry_type' => TextType::class,
                 'allow_add' => true,
                 'prototype' => true,
-                'prototype_data' => 'Add anwser'
+                'prototype_data' => 'Add anwser',
+                'required' => false,
             ])
             ->add('Submit', SubmitType::class)
         ;

@@ -1,10 +1,15 @@
 
         jQuery(document).ready(function () {
             jQuery('.add-another-collection-widget').click(function (e) {
-                console.log('asdasd')
+                
                 var list = jQuery(jQuery(this).attr('data-list-selector'));
                 // Try to find the counter of the list or use the length of the list
                 var counter = list.data('widget-counter') || list.children().length;
+
+                if(counter > 5) {
+                    alert("Too many anwsers")
+                    return
+                }
 
                 // grab the prototype template
                 var newWidget = list.attr('data-prototype');

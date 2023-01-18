@@ -46,6 +46,7 @@ class CategoryController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($form->getData());
             $this->em->flush();
+            return $this->redirect($request->getUri());
         }
 
         //get all questions to render
