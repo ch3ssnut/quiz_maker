@@ -2,7 +2,6 @@
 {% block javascripts %}
     <script src="{{ asset('/jquery.js')}}"></script>
     <script src="{{ asset('/formHandler.js')}}"></script>
-
 {% endblock %}
 
 {% block title %}Hello QuizEditController!{% endblock %}
@@ -21,7 +20,6 @@
             {{ form_label(form.image, 'img', {'label_attr': {'class': 'label'}}) }}
             {{ form_widget(form.image, {'attr': {'class': 'widget'}})}}
 
-            
             <div id="anwser-fields-list"
                 data-prototype="{{ form_widget(form.anwsers.vars.prototype)|e }}"
                 data-widget-tags="{{ '<div></div>'|e }}"
@@ -37,6 +35,7 @@
             <button type="button"
                 class="add-another-collection-widget"
                 data-list-selector="#anwser-fields-list">Add another anwser</button>
+            <script>add()</script>
 
             
         {{ form_end(form) }}
