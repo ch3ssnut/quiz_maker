@@ -35,7 +35,7 @@ class CategoryController extends AbstractController
 
         $currentCategory = $this->em->getRepository(Categories::class)->find($id);
         
-        //TODO: add form to add questions
+        //form to add questions
         $question = new Questions();
         $question
             ->setCategory($currentCategory)
@@ -44,6 +44,7 @@ class CategoryController extends AbstractController
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
+            dd($form->getData());
             $this->em->persist($form->getData());
             $this->em->flush();
             return $this->redirect($request->getUri());

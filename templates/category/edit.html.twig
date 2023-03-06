@@ -36,7 +36,7 @@
 
             <button type="button"
                 class="add-another-collection-widget"
-                data-list-selector="#anwser-fields-list">Add another email</button>
+                data-list-selector="#anwser-fields-list">Add another anwser</button>
 
             
         {{ form_end(form) }}
@@ -51,7 +51,7 @@
                         {{ key }}
                     </div>
                     <div class="buttons">
-                        <a href="{{path('app_category', {'id': question.id})}}" class="edit">Edit</a>
+                        <a href="{{path('app_question_edit', { 'catId': category.id, 'qId': question.id})}}" class="edit">Edit</a>
                         <a href="{{path('app_question_delete',  {'id': question.id})}}" class="delete">Delete</a>
                     </div>
                 </div>

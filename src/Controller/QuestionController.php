@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Categories;
 use App\Entity\Questions;
+use App\Form\QuestionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,13 +14,26 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuestionController extends AbstractController
 {
-    #[Route('/question/{id}', name: 'app_question_edit')]
-    public function index(int $id): Response
+    #[Route('category/{catId}/question/{qId}', name: 'app_question_edit')]
+    public function index(int $catId, int $qId, EntityManagerInterface $em, Request $request): Response
     {
 
+        // check if user has permissions
+        $category = $em->getRepository(Categories::class)->findUserByCategoryId($catId, $this->getUser())[0];
+        if(!$category) {
+            throw new Exception('Access denied');
+        }
 
-        return $this->render('question/index.html.twig', [
-            'controller_name' => 'QuestionController',
+        $question = $em->getRepository(Questions::class)->find($qId);
+
+        $form = $this->createForm(QuestionType::class);
+        $form->handleRequest($request);
+        $form->get('content')->setData($question->getContent());
+        // TODO: add image
+
+        return $this->render('question/edit.html.twig', [
+            'form' => $form->createView(),
+            'anwsers'=> $question->getAnwsers(),
         ]);
     }
 

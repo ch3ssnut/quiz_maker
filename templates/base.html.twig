@@ -34,7 +34,9 @@
                     </li>  #}
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_quiz') }}">Quiz</a>
+                        <a class="nav-link {% if page == 'app_quiz' %}active
+                            
+                        {% endif %}" href="{{ path('app_quiz') }}">Quiz</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
