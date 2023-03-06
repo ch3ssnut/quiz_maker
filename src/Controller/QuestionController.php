@@ -26,10 +26,14 @@ class QuestionController extends AbstractController
 
         $question = $em->getRepository(Questions::class)->find($qId);
 
-        $form = $this->createForm(QuestionType::class);
-        $form->handleRequest($request);
+        $form = $this->createForm(QuestionType::class, $question);
         $form->get('content')->setData($question->getContent());
+        $form->handleRequest($request);
         // TODO: add image
+        if($form->isSubmitted() && $form->isValid()) {
+            $em->persist($form->getData());
+            $em->flush();
+        }
 
         return $this->render('question/edit.html.twig', [
             'form' => $form->createView(),

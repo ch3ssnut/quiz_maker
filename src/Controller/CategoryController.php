@@ -44,7 +44,6 @@ class CategoryController extends AbstractController
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-            dd($form->getData());
             $this->em->persist($form->getData());
             $this->em->flush();
             return $this->redirect($request->getUri());
