@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block javascripts %}
-    <script src="{{ asset('/jquery.js')}}"></script>
     <script src="{{ asset('/formHandler.js')}}"></script>
 {% endblock %}
 
@@ -30,7 +29,7 @@
         {% do form.anwsers.setRendered() %}
 
         <button type="button"
-            class="add-another-collection-widget"
+            id="add-another-collection-widget"
             data-list-selector="#anwser-fields-list">Add another anwser</button>
 
         {{ form_widget(form.Submit, { 'label': 'Edit question' }) }}

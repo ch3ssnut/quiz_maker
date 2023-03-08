@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block javascripts %}
-    <script src="{{ asset('/jquery.js')}}"></script>
     <script src="{{ asset('/formHandler.js')}}"></script>
 {% endblock %}
 
@@ -33,7 +32,7 @@
             </div>
 
             <button type="button"
-                class="add-another-collection-widget"
+                id="add-another-collection-widget"
                 data-list-selector="#anwser-fields-list">Add another anwser</button>
             <script>add()</script>
 
