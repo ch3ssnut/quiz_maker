@@ -33,6 +33,7 @@ class QuestionController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $em->persist($form->getData());
             $em->flush();
+            return $this->redirect($request->headers->get('referer'));
         }
 
         return $this->render('question/edit.html.twig', [
