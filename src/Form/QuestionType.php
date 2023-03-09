@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Questions;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,7 +17,13 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('content', TextType::class)
-            ->add('image')
+            ->add('image', FileType::class, [
+                'required' => false,
+                'label' => 'Image',
+                'mapped' => false,
+
+                
+            ])
             ->add('anwsers', CollectionType::class, [
                 'entry_type' => TextType::class,
                 'allow_add' => true,
