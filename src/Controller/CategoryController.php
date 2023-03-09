@@ -46,7 +46,6 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $question->setImage($imageSaver->saveImage($form));
-            dd($question);
             $this->em->persist($form->getData());
             $this->em->flush();
             return $this->redirect($request->getUri());

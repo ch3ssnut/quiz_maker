@@ -19,6 +19,7 @@ class ImageSaver {
     public function saveImage($form) {
         $imageFile = $form->get('image')->getData();
 
+        
         if($imageFile) {
             $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
             $safeFilename = $this->slugger->slug($originalFilename);
@@ -34,7 +35,7 @@ class ImageSaver {
             }
 
             catch (FileException $e) {
-                
+                dd($e);
             }
 
             return $newFilename;

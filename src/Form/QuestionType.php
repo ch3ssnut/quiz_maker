@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class QuestionType extends AbstractType
 {
@@ -21,6 +22,11 @@ class QuestionType extends AbstractType
                 'required' => false,
                 'label' => 'Image',
                 'mapped' => false,
+                'constraints' => [
+                    new Image([
+                        'maxSize' => '5M'
+                    ])
+                ]
 
                 
             ])

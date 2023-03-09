@@ -18,6 +18,7 @@
 
             {{ form_label(form.image, 'img', {'label_attr': {'class': 'label'}}) }}
             {{ form_widget(form.image, {'attr': {'class': 'widget'}})}}
+            {{ form_errors(form.image) }}
 
             <div id="anwser-fields-list"
                 data-prototype="{{ form_widget(form.anwsers.vars.prototype)|e }}"
