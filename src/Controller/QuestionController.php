@@ -36,8 +36,8 @@ class QuestionController extends AbstractController
                 $path = $this->getParameter('image_directory') . '/' . $question->getImage();
                 $fs = new Filesystem();
                 $fs->remove($path);
+                $question->setImage($imageSaver->saveImage($form));
             }
-            $question->setImage($imageSaver->saveImage($form));
             $em->persist($form->getData());
             $em->flush();
             return $this->redirect($request->headers->get('referer'));
