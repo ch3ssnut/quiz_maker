@@ -18,7 +18,13 @@
 
             {{ form_label(form.image, 'img', {'label_attr': {'class': 'label'}}) }}
             {{ form_widget(form.image, {'attr': {'class': 'widget'}})}}
-            {{ form_errors(form.image) }}
+            {% if form.image.vars['errors']|length > 0 %}
+            <ul class="error">
+                {% for error in form.image.vars['errors'] %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            </ul>
+    {% endif %}
 
             <div id="anwser-fields-list"
                 data-prototype="{{ form_widget(form.anwsers.vars.prototype)|e }}"

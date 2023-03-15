@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Categories;
 use App\Entity\Questions;
 use App\Form\QuestionType;
+use App\Service\ImageSaver;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     #[Route('category/{catId}/question/{qId}', name: 'app_question_edit')]
-    public function index(int $catId, int $qId, EntityManagerInterface $em, Request $request): Response
+    public function index(int $catId, int $qId, EntityManagerInterface $em, Request $request, ImageSaver $imageSaver): Response
     {
 
         // check if user has permissions
@@ -29,8 +31,13 @@ class QuestionController extends AbstractController
         $form = $this->createForm(QuestionType::class, $question);
         $form->get('content')->setData($question->getContent());
         $form->handleRequest($request);
-        // TODO: add image
         if($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('image')->getData()) {
+                $path = $this->getParameter('image_directory') . '/' . $question->getImage();
+                $fs = new Filesystem();
+                $fs->remove($path);
+            }
+            $question->setImage($imageSaver->saveImage($form));
             $em->persist($form->getData());
             $em->flush();
             return $this->redirect($request->headers->get('referer'));
@@ -39,6 +46,7 @@ class QuestionController extends AbstractController
         return $this->render('question/edit.html.twig', [
             'form' => $form->createView(),
             'anwsers'=> $question->getAnwsers(),
+            'image' => $question->getImage(),
         ]);
     }
 

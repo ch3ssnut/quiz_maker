@@ -34,5 +34,8 @@
 
         {{ form_widget(form.Submit, { 'label': 'Edit question' }) }}
     {{ form_end(form) }}
+    {% if image %}
+        <img src="{{ asset('uploads/images/' ~ image) }}" alt="no Image">
+    {% endif %}
 </div>
 {% endblock %}
