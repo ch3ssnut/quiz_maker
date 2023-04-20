@@ -1,0 +1,176 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+:root {
+    --first-layer-color: rgba(255, 255, 255, 0.08);
+    --second-layer-color: rgba(255, 255, 255, 0.12);
+    --text-color: rgba(255, 255, 255, 0.87);
+
+}
+
+
+html {
+  font-size: 62.5%; 
+  min-height: 100%; }
+
+body {
+  box-sizing: border-box; }
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  min-height: 1vp;
+  /* color: #777; */
+  padding: 3rem; 
+  /* background: linear-gradient(45deg, rgba(131,36,116,1) 0%, rgba(222,6,190,1) 47%, rgba(255,193,229,1) 100%);  */
+  background-color: #121212;
+  color: var(--text-color);
+
+}
+
+/* LOGIN PAGE */
+
+.login-container {
+    background-color: var(--first-layer-color);
+    /* opacity: 30%; */
+}
+
+.form__header {
+    font-size: 3rem;
+    position: relative;
+    margin-bottom: 5rem;
+}
+
+.form__header::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: var(--text-color);
+  position: absolute;
+  top: 5rem;
+  left: 0;
+}
+
+.form__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: .7rem;
+    display: block;
+ }
+
+.form__input {
+  font-size: 1.5rem;
+  padding: 1rem 0.75rem;
+  border-radius: 5px;
+  background: var(--second-layer-color);
+  font-family: inherit;
+  border: none;
+  border-bottom: 3px solid transparent;
+  width: 100%;
+  display: block;
+  color: var(--text-color);
+  margin-bottom: 2.75rem;
+  
+}
+.form__input:focus {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid var(--text-color); }
+
+
+
+.form__checkbox {
+    margin-bottom: 0 auto;
+    font-family: 'Comic Sans';
+}
+
+.switch {
+display: inline-block;
+height: 34px;
+position: relative;
+width: 60px;
+
+}
+
+.checkbox-label {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: auto;
+    top: -1rem;
+    margin-right: 2rem;
+    font-family: "Lato", sans-serif;
+}
+
+.switch input {
+display:none;
+}
+
+.slider {
+background-color: var(--second-layer-color);
+bottom: 0;
+cursor: pointer;
+left: 0;
+position: absolute;
+right: 0;
+top: 0;
+transition: .4s;
+}
+
+.slider:before {
+background-color: var(--text-color);
+bottom: 4px;
+content: "";
+height: 26px;
+left: 4px;
+position: absolute;
+transition: .4s;
+width: 26px;
+}
+
+input:checked + .slider {
+background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+transform: translateX(26px);
+}
+
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}
+
+
+.form__checkbox__input {
+    position: relative;
+    right: 3rem;
+}
+
+
+.form__button{
+    width:30%;
+    height: 5.5rem;
+    border:none;
+    border-radius:5px;
+    font-size:inherit;
+    font-weight:600;
+    color:var(--text-color);
+    background-color:var(--second-layer-color);
+    cursor:pointer;
+}
+
+.form__button:hover {
+    background-color: rgba(255, 255, 255, 0.09)
+}
