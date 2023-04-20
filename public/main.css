@@ -27,14 +27,14 @@ body {
   line-height: 1.7;
   min-height: 1vp;
   /* color: #777; */
-  padding: 3rem; 
+  /* padding: 3rem;  */
   /* background: linear-gradient(45deg, rgba(131,36,116,1) 0%, rgba(222,6,190,1) 47%, rgba(255,193,229,1) 100%);  */
   background-color: #121212;
   color: var(--text-color);
 
 }
 
-/* LOGIN PAGE */
+/* LOGIN/REGISTER PAGE */
 
 .login-container {
     background-color: var(--first-layer-color);
@@ -67,7 +67,7 @@ body {
 
 .form__input {
   font-size: 1.5rem;
-  padding: 1rem 0.75rem;
+  padding: 1rem 0.75rem 0.45rem;
   border-radius: 5px;
   background: var(--second-layer-color);
   font-family: inherit;
@@ -160,7 +160,7 @@ border-radius: 50%;
 
 .form__button{
     width:30%;
-    height: 5.5rem;
+    height: 4.5rem;
     border:none;
     border-radius:5px;
     font-size:inherit;
@@ -172,4 +172,30 @@ border-radius: 50%;
 
 .form__button:hover {
     background-color: rgba(255, 255, 255, 0.09)
+}
+
+/* NAVBAR */
+
+.nav {
+  padding: 0.3rem 1rem;
+}
+
+.nav__color {
+  background-color: var(--second-layer-color);
+}
+
+.nav__button {
+  font-size: 1.9rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color:var(--text-color);
+  background-color:var(--second-layer-color);
+  margin: 0 0.3rem;
+  border-radius:5px;
+}
+
+.nav__button:hover {
+  background-color: rgba(255, 255, 255, 0.09);
+  color:var(--text-color);
 }

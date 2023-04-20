@@ -17,30 +17,24 @@
         <nav>
             <ul class="nav nav-pills justify-content-end nav__color">
                 <li class="nav-item">
-                    <a class="nav-link {% if page == 'app_homepage' %}active{% endif %}" href="{{ path('app_homepage') }}">Homepage</a>
+                    <a class="nav__button {% if page == 'app_homepage' %}active{% endif %}" href="{{ path('app_homepage') }}">Homepage</a>
                 </li>
                 {% if not app.user %}
                     <li class="nav-item">
-                        <a class="nav-link {% if page == 'app_login' %}active{% endif %}" href="{{ path('app_login') }}">Login</a>
+                        <a class="nav__button {% if page == 'app_login' %}active{% endif %}" href="{{ path('app_login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if page == 'app_register' %}active{% endif %}" href="{{ path('app_register') }}">Register</a>
+                        <a class="nav__button {% if page == 'app_register' %}active{% endif %}" href="{{ path('app_register') }}">Register</a>
                     </li>
                 {% else %}
-                    {# <li class="nav-item">
-                        <a class="nav-link {{ page == 'dishes' ? 'active' : '' }} {{ page == 'edit_dishes' ? 'active' : '' }}" href="{{ path('dishes') }}">Dishes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ page == 'generate_spreadsheet' ? 'active' : '' }}" href="{{ path('generate_spreadsheet') }}">Generate</a>
-                    </li>  #}
 
                     <li class="nav-item">
-                        <a class="nav-link {% if page == 'app_quiz' %}active
+                        <a class="nav__button {% if page == 'app_quiz' %}active
                             
                         {% endif %}" href="{{ path('app_quiz') }}">Quiz</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                        <a class="nav__button" href="{{ path('app_logout') }}">Logout</a>
                     </li>
                 {% endif %}
             </ul>
