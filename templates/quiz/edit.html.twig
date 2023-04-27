@@ -4,35 +4,36 @@
 
 {% block body %}
 <div class="container">
-    <div class="quiz_name">
+    <div class="quiz__name__title">
         {{quiz.name}}
     </div>
-
-    <div class="form">
+</div>
+<div class="container">
+    <div class="container__quiz">
+    <div class="quiz quiz-container">
         {{ form_start(form) }}
-            {{ form_label(form.name, 'Category name', {'label_attr': {'class': 'label'}}) }}
-            {{ form_widget(form.name, {'attr': {'class': 'widget'}})}}
+            {{ form_label(form.name, 'Category name', {'label_attr': {'class': 'form__label'}}) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form__input'}})}}
 
-            {{ form_widget(form.type, {'attr': {'class': 'widget'}})}}
+            {{ form_widget(form.type, {'attr': {'class': 'quiz__list'}})}}
 
-            {{ form_widget(form.Submit, {'attr': {'class': 'btn'}})}}
+            {{ form_widget(form.Submit, {'attr': {'class': 'quiz__button'}})}}
 
         {{ form_end(form) }}
     </div>
 
-    <div class="categories">
         {% if categories %}
             {% for category in categories %}
-                <div class="category">
-                    <div class="category_name">
+                <div class="quiz quiz-container">
+                    <div class="quiz__name">
                         {{category.name}}
                     </div>
-                    <div class="category_type">
+                    <div class="quiz__name">
                         {{category.type}}
                     </div>
-                    <div class="buttons">
-                        <a href="{{path('app_category', {'id': category.id})}}" class="edit">Edit</a>
-                        <a href="{{path('app_category_delete',  {'id': category.id})}}" class="delete">Delete</a>
+                    <div class="quiz__button-row">
+                        <a href="{{path('app_category', {'id': category.id})}}" class="quiz__button">Edit</a>
+                        <a href="{{path('app_category_delete',  {'id': category.id})}}" class="quiz__button">Delete</a>
                     </div>
                 </div>
             {% endfor %}

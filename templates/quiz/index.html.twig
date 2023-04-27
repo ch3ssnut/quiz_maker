@@ -32,9 +32,9 @@
                     <div class="name">{{ quiz.name }}</div>
                 </div>
                 <div class="quiz__button-row">
+                        <a href="{{ path('app_quiz_edit', { 'id':quiz.id}) }}" class="quiz__button">Edit</a>
                         <a href="{{ path('app_quiz_delete', { 'id':quiz.id}) }}" class="quiz__button">Delete</a>
 
-                        <a href="{{ path('app_quiz_edit', { 'id':quiz.id}) }}" class="quiz__button">Edit</a>
                 </div>
             </div>
         {% endfor %}

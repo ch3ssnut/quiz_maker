@@ -242,3 +242,31 @@ border-radius: 50%;
     padding: 1rem 1rem;
     margin-right: 2rem;
 }
+
+.quiz__list {
+  width: 100%;
+  font-size: 1.7rem;
+  font-weight: 700;
+  background-color: var(--second-layer-color);
+  color: var(--text-color);
+  display: block;
+  margin-bottom: 2rem;
+  padding: .6rem 0;
+  border-radius:5px;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.quiz__name__title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 3rem 1.5rem 1.5rem;
+  background-color: var(--second-layer-color);
+}
+
+.quiz__list option {
+  font-size: 1.7rem;
+  font-weight: 700;
+  background-color: #3F3F3F;
+  color: #E3E3E3;
+}
