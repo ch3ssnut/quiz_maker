@@ -4,37 +4,42 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container container__quiz">
+    {# ADD NEW QUIZ DIV #}
+    <div class="quiz">
+        {{ form_start(form) }}
+
+            <div class="form">
+                <div class="errors">
+                    {{ form_errors(form)}}
+                </div>
+                <div class="">
+                    {{ form_label(form.name, 'Name new quiz' ,{'label_attr': {'class': 'form__label'}})}}
+                    {{ form_widget(form.name, {'attr': {'class': 'form__input'}})}}
+
+
+                    {{ form_widget(form.Submit, {'attr': {'class': 'quiz__button'}})}}
+                </div>
+            </div>
+
+        {{ form_end(form) }}
+    </div>
+
     {% if quizes %}
         {% for quiz in quizes %}
-            <div class="quiz">
-                <div class="name">{{ quiz.name }}</div>
-            </div>
-            <div class="delete_quiz">
-                <a href="{{ path('app_quiz_delete', { 'id':quiz.id}) }}" class="delete">Delete</a>
-            </div>
-            <div class="edit_quiz">
-                <a href="{{ path('app_quiz_edit', { 'id':quiz.id}) }}" class="edit">Edit</a>
+            <div class="quiz quiz-container">
+                <div class="quiz__name">
+                    <div class="name">{{ quiz.name }}</div>
+                </div>
+                <div class="quiz__button-row">
+                        <a href="{{ path('app_quiz_delete', { 'id':quiz.id}) }}" class="quiz__button">Delete</a>
+
+                        <a href="{{ path('app_quiz_edit', { 'id':quiz.id}) }}" class="quiz__button">Edit</a>
+                </div>
             </div>
         {% endfor %}
     {% endif %}
+
 </div>
-
-{{ form_start(form) }}
-
-    <div class="form">
-        {# <div class="errors">
-            {{ form_errors(form)}}
-        </div> #}
-        <div class="">
-            {{ form_label(form.name, 'Name' ,{'label_attr': {'class': 'label'}})}}
-            {{ form_widget(form.name, {'attr': {'class': 'form_widget'}})}}
-
-
-            {{ form_widget(form.Submit, {'attr': {'class': 'btn'}})}}
-        </div>
-    </div>
-
-{{ form_end(form) }}
 
 {% endblock %}
