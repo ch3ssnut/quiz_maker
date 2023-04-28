@@ -31,6 +31,7 @@ class QuestionType extends AbstractType
                 
             ])
             ->add('anwsers', CollectionType::class, [
+                'label' => false,
                 'entry_type' => TextType::class,
                 'allow_add' => true,
                 'prototype' => true,
@@ -39,6 +40,7 @@ class QuestionType extends AbstractType
                 'entry_options' => [
                     'attr' => [
                         'placeholder' => 'Add anwser or leave empty',
+                        'class' => 'form__input'
                     ]
                 ]
             ])

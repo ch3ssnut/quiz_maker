@@ -7,35 +7,40 @@
 {% block title %}Hello QuestionController!{% endblock %}
 
 {% block body %}
-<div class="">
-    {{ form_start(form) }}
-        {{ form_label(form.content, 'Question', {'label_attr': {'class': 'label'}}) }}
-        {{ form_widget(form.content, {'attr': {'class': 'widget'}})}}
-
-        {{ form_label(form.image, 'img', {'label_attr': {'class': 'label'}}) }}
-        {{ form_widget(form.image, {'attr': {'class': 'widget'}})}}
-
-        <div id="anwser-fields-list"
-            data-prototype="{{ form_widget(form.anwsers.vars.prototype)|e }}"
-            data-widget-tags="{{ '<div></div>'|e }}"
-            data-widget-counter="{{ anwsers|length }}">
-        {% for key,anwser in anwsers %}
-            <div>
-                <input id="question_anwser_{{key}}" type="text" name="question[anwsers][{{key}}]" value="{{anwser}}">
+<div class="container container__quiz">
+    <div class="quiz">
+        {{ form_start(form) }}
+            <div class="errors">
+                {{ form_errors(form)}}
             </div>
-        {% endfor %}
-        </div>
+            {{ form_label(form.content, 'Question', {'label_attr': {'class': 'form__label'}}) }}
+            {{ form_widget(form.content, {'attr': {'class': 'form__input'}})}}
 
-        {% do form.anwsers.setRendered() %}
+            {{ form_label(form.image, 'Add an image', {'label_attr': {'class': 'form__label'}}) }}
+            {{ form_widget(form.image, {'attr': {'class': 'widget'}})}}
 
-        <button type="button"
-            id="add-another-collection-widget"
-            data-list-selector="#anwser-fields-list">Add another anwser</button>
+            <div class="" id="anwser-fields-list"
+                data-prototype="{{ form_widget(form.anwsers.vars.prototype)|e }}"
+                data-widget-tags="{{ '<div></div>'|e }}"
+                data-widget-counter="{{ anwsers|length }}">
+            {% for key,anwser in anwsers %}
+                <div>
+                    <input id="question_anwser_{{key}}" type="text" name="question[anwsers][{{key}}]" value="{{anwser}}">
+                </div>
+            {% endfor %}
+            </div>
 
-        {{ form_widget(form.Submit, { 'label': 'Edit question' }) }}
-    {{ form_end(form) }}
-    {% if image %}
-        <img src="{{ asset('uploads/images/' ~ image) }}" alt="no Image">
-    {% endif %}
+            {% do form.anwsers.setRendered() %}
+
+            <button type="button"
+                id="add-another-collection-widget"
+                data-list-selector="#anwser-fields-list">Add another anwser</button>
+
+            {{ form_widget(form.Submit, { 'label': 'Edit question' }) }}
+        {{ form_end(form) }}
+        {% if image %}
+            <img src="{{ asset('uploads/images/' ~ image) }}" alt="no Image">
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

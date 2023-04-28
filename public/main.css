@@ -172,6 +172,39 @@ border-radius: 50%;
 
 .form__button:hover {
     background-color: rgba(255, 255, 255, 0.09)
+    
+}
+
+input[type='file'] {
+  opacity:0    
+}
+
+.form__file {
+  /* display: none; */
+  margin-bottom: 3rem;
+}
+.form__file::before {
+  content: 'Choose file';
+  display: inline-block;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  border:none;
+  padding: .7rem .5rem;
+
+  border-radius:5px;
+  font-size:inherit;
+  font-weight:600;
+  color:var(--text-color);
+  background-color:var(--second-layer-color);
+  cursor:pointer;
+}
+.form__file:hover::before {
+  border-color: black;
+}
+.form__file:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 
 /* NAVBAR */
@@ -255,6 +288,24 @@ border-radius: 50%;
     text-decoration: none;
     padding: 1rem 1rem;
     margin-right: 2rem;
+}
+
+.quiz__button:hover {
+    color: var(--text-color);
+}
+
+.quiz__button-submit {
+  border:none;
+  border-radius:5px;
+  font-size:inherit;
+  font-weight:600;
+  color:var(--text-color);
+  background-color:var(--second-layer-color);
+  cursor:pointer;
+  text-decoration: none;
+  margin-top: 1.7rem;
+  padding: 1rem 1rem;
+  margin-right: 2rem;
 }
 
 .quiz__list {

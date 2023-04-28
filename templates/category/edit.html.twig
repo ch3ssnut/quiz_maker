@@ -6,25 +6,30 @@
 {% block title %}Hello QuizEditController!{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="category_name">
-        {{category.name}}
-    </div>
+<div class="container container__quiz">
 
-    <div class="form">
+    <div class="quiz">
+        <div class="quiz-container__row">
+            <div class="quiz__name">
+                Category: 
+            </div>
+            <div class="quiz__name-info">
+                {{category.name}}
+            </div>
+        </div>
         {{ form_start(form) }}
-            {{ form_label(form.content, 'Question', {'label_attr': {'class': 'label'}}) }}
-            {{ form_widget(form.content, {'attr': {'class': 'widget'}})}}
+            {{ form_label(form.content, 'Add question', {'label_attr': {'class': 'form__label'}}) }}
+            {{ form_widget(form.content, {'attr': {'class': 'form__input'}})}}
 
-            {{ form_label(form.image, 'img', {'label_attr': {'class': 'label'}}) }}
-            {{ form_widget(form.image, {'attr': {'class': 'widget'}})}}
+            {{ form_label(form.image, 'Add an image', {'label_attr': {'class': 'form__label'}}) }}
+            {{ form_widget(form.image, {'attr': {'class': 'form__file'}})}}
             {% if form.image.vars['errors']|length > 0 %}
             <ul class="error">
                 {% for error in form.image.vars['errors'] %}
                     <li>{{ error.message }}</li>
                 {% endfor %}
             </ul>
-    {% endif %}
+            {% endif %}
 
             <div id="anwser-fields-list"
                 data-prototype="{{ form_widget(form.anwsers.vars.prototype)|e }}"
@@ -38,12 +43,12 @@
             {% endfor %}
             </div>
 
-            <button type="button"
+            <button class="quiz__button" type="button"
                 id="add-another-collection-widget"
                 data-list-selector="#anwser-fields-list">Add another anwser</button>
             <script>add()</script>
 
-            
+            {{ form_widget(form.Submit, {'attr': {'class': 'quiz__button-submit'}})}}
         {{ form_end(form) }}
     </div>
 
