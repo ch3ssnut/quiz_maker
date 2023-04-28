@@ -211,7 +211,7 @@ border-radius: 50%;
     margin: 0 1.5rem;
     background-color: var(--first-layer-color);
     padding: 2rem;
-    width: 18%;
+    width: 22%;
 }
 
 .quiz-container {
@@ -220,10 +220,24 @@ border-radius: 50%;
     justify-content: space-between;
 }
 
+.quiz-container__row {
+  display: flex;
+
+}
+
 .quiz__name {
     margin-top: 0.7rem;
     font-size: 1.7rem;
     font-weight: 700;
+
+}
+
+.quiz__name-info {
+    margin-top: 0.7rem;
+    font-size: 1.7rem;
+    margin-left: 1.3rem;
+    font-weight: 500;
+    
 }
 
 .quiz__button-row {
@@ -246,7 +260,7 @@ border-radius: 50%;
 .quiz__list {
   width: 100%;
   font-size: 1.7rem;
-  font-weight: 700;
+  font-weight: 500;
   background-color: var(--second-layer-color);
   color: var(--text-color);
   display: block;
@@ -266,7 +280,7 @@ border-radius: 50%;
 
 .quiz__list option {
   font-size: 1.7rem;
-  font-weight: 700;
+  font-weight: 500;
   background-color: #3F3F3F;
   color: #E3E3E3;
 }

@@ -23,7 +23,7 @@ class Questions
     private ?bool $isCompleted = null;
 
     #[ORM\ManyToOne(inversedBy: 'Questions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?Categories $category = null;
 
     #[ORM\Column(nullable: true)]

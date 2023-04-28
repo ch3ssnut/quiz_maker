@@ -25,15 +25,33 @@
         {% if categories %}
             {% for category in categories %}
                 <div class="quiz quiz-container">
-                    <div class="quiz__name">
-                        {{category.name}}
+                    <div class="quiz-container__row">
+                        <div class="quiz__name">
+                            Category: 
+                        </div>
+                        <div class="quiz__name-info">
+                            {{category.name}}
+                        </div>
                     </div>
-                    <div class="quiz__name">
-                        {{category.type}}
+                    <div class="quiz-container__row">
+                        <div class="quiz__name">
+                            Questions: 
+                        </div>
+                        <div class="quiz__name-info">
+                            {{category.questions|length}}
+                        </div>
+                    </div>
+                    <div class="quiz-container__row">
+                        <div class="quiz__name">
+                            Type: 
+                        </div>
+                        <div class="quiz__name-info">
+                            {{category.type}}
+                        </div>
                     </div>
                     <div class="quiz__button-row">
                         <a href="{{path('app_category', {'id': category.id})}}" class="quiz__button">Edit</a>
-                        <a href="{{path('app_category_delete',  {'id': category.id})}}" class="quiz__button">Delete</a>
+                        <a onclick="return confirm('Are u sure you want to delete this question?')"  href="{{path('app_category_delete',  {'id': category.id})}}" class="quiz__button">Delete</a>
                     </div>
                 </div>
             {% endfor %}

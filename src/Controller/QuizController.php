@@ -93,6 +93,8 @@ class QuizController extends AbstractController
             return $this->redirect($request->getUri());
         }
 
+        // dd($categories[0]->getQuestions());
+
 
         return $this->render('quiz/edit.html.twig', [
             'quiz' => $quiz,

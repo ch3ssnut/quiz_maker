@@ -19,7 +19,7 @@ class Categories
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'categories')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?Quiz $quiz = null;
 
     #[ORM\Column(length: 255)]
