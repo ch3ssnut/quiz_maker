@@ -84,7 +84,9 @@ body {
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
     border-bottom: 3px solid var(--text-color); }
 
-
+.add-anwser {
+  margin-bottom: .8rem !important;
+}
 
 .form__checkbox {
     margin-bottom: 0 auto;
@@ -286,8 +288,21 @@ input[type='file'] {
     background-color:var(--second-layer-color);
     cursor:pointer;
     text-decoration: none;
-    padding: 1rem 1rem;
+    padding: .7rem 1rem;
     margin-right: 2rem;
+}
+
+.quiz__button-add {
+  border:none;
+  border-radius:5px;
+  font-size:inherit;
+  font-weight:600;
+  color:var(--text-color);
+  background-color:var(--second-layer-color);
+  cursor:pointer;
+  text-decoration: none;
+  padding: .7rem 1rem;
+  margin-bottom: 3rem;
 }
 
 .quiz__button:hover {
@@ -303,8 +318,8 @@ input[type='file'] {
   background-color:var(--second-layer-color);
   cursor:pointer;
   text-decoration: none;
-  margin-top: 1.7rem;
-  padding: 1rem 1rem;
+  margin-top: 2.3rem;
+  padding: .7rem 1rem;
   margin-right: 2rem;
 }
 
@@ -334,4 +349,21 @@ input[type='file'] {
   font-weight: 500;
   background-color: #3F3F3F;
   color: #E3E3E3;
+}
+
+
+.question-container {
+    display: flex; 
+    justify-content: space-between;
+
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 23%;
+  background-color: var(--second-layer-color);
+  margin-right: 1rem;
+  padding: 1rem 1.5rem;
 }

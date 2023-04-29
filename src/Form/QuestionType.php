@@ -40,7 +40,7 @@ class QuestionType extends AbstractType
                 'entry_options' => [
                     'attr' => [
                         'placeholder' => 'Add anwser or leave empty',
-                        'class' => 'form__input'
+                        'class' => 'form__input add-anwser'
                     ]
                 ]
             ])

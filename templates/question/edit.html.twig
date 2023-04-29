@@ -17,7 +17,8 @@
             {{ form_widget(form.content, {'attr': {'class': 'form__input'}})}}
 
             {{ form_label(form.image, 'Add an image', {'label_attr': {'class': 'form__label'}}) }}
-            {{ form_widget(form.image, {'attr': {'class': 'widget'}})}}
+            {{ form_widget(form.image, {'attr': {'class': 'widget', 'style': 'display:none'}})}}
+            <input class="quiz__button-add" type="button" value="Choose an image" onclick="document.getElementById('question_image').click();" />
 
             <div class="" id="anwser-fields-list"
                 data-prototype="{{ form_widget(form.anwsers.vars.prototype)|e }}"
@@ -34,9 +35,10 @@
 
             <button type="button"
                 id="add-another-collection-widget"
-                data-list-selector="#anwser-fields-list">Add another anwser</button>
+                data-list-selector="#anwser-fields-list" 
+                class="quiz__button">Add another anwser</button>
 
-            {{ form_widget(form.Submit, { 'label': 'Edit question' }) }}
+            {{ form_widget(form.Submit, { 'label': 'Edit question', 'attr': {'class': 'quiz__button-submit'} }) }}
         {{ form_end(form) }}
         {% if image %}
             <img src="{{ asset('uploads/images/' ~ image) }}" alt="no Image">

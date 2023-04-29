@@ -6,6 +6,11 @@
 {% block title %}Hello QuizEditController!{% endblock %}
 
 {% block body %}
+    <div class="container">
+    <div class="quiz__name__title">
+        {{category.name}}
+    </div>
+</div>
 <div class="container container__quiz">
 
     <div class="quiz">
@@ -13,16 +18,16 @@
             <div class="quiz__name">
                 Category: 
             </div>
-            <div class="quiz__name-info">
-                {{category.name}}
-            </div>
         </div>
         {{ form_start(form) }}
             {{ form_label(form.content, 'Add question', {'label_attr': {'class': 'form__label'}}) }}
             {{ form_widget(form.content, {'attr': {'class': 'form__input'}})}}
 
             {{ form_label(form.image, 'Add an image', {'label_attr': {'class': 'form__label'}}) }}
-            {{ form_widget(form.image, {'attr': {'class': 'form__file'}})}}
+            {{ form_widget(form.image, {'attr': {'class': 'form__file', 'style': 'display:none'}})}}
+            <input class="quiz__button-add" type="button" value="Choose an image" onclick="document.getElementById('question_image').click();" />
+
+
             {% if form.image.vars['errors']|length > 0 %}
             <ul class="error">
                 {% for error in form.image.vars['errors'] %}
@@ -31,6 +36,9 @@
             </ul>
             {% endif %}
 
+            <div class="form__label">
+                Add more anwsers
+            </div>
             <div id="anwser-fields-list"
                 data-prototype="{{ form_widget(form.anwsers.vars.prototype)|e }}"
                 data-widget-tags="{{ '<div></div>'|e }}"
@@ -52,21 +60,22 @@
         {{ form_end(form) }}
     </div>
 
-    <div class="question">
-        {% if questions %}
+    {% if questions %}
+        <div class="question-container">
             {% for key,question in questions %}
                 <div class="question">
-                    <div class="question_number">
+                    <div class="form__label">
                         {% set key = key + 1 %}
-                        {{ key }}
+                        Number: {{ key }}
                     </div>
-                    <div class="buttons">
-                        <a href="{{path('app_question_edit', { 'catId': category.id, 'qId': question.id})}}" class="edit">Edit</a>
-                        <a href="{{path('app_question_delete',  {'id': question.id})}}" class="delete">Delete</a>
+                    <div class="quiz__button-row">
+                        <a href="{{path('app_question_edit', { 'catId': category.id, 'qId': question.id})}}" class="quiz__button question-btn">Edit</a>
+                        <a href="{{path('app_question_delete',  {'id': question.id})}}" class="quiz__button question-btn">Delete</a>
                     </div>
                 </div>
             {% endfor %}
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
+
 </div>
 {% endblock %}

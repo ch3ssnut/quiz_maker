@@ -40,7 +40,7 @@
         //     });
         // });
         document.addEventListener("DOMContentLoaded", () => {
-            document.getElementsByClassName("form__file")[0].innerHTML = "*";​
+
             document.getElementById("add-another-collection-widget").onclick = () => {
                 add();
             }
