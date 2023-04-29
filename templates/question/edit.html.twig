@@ -8,7 +8,7 @@
 
 {% block body %}
 <div class="container container__quiz">
-    <div class="quiz">
+    <div class="quiz question-position">
         {{ form_start(form) }}
             <div class="errors">
                 {{ form_errors(form)}}
@@ -26,7 +26,7 @@
                 data-widget-counter="{{ anwsers|length }}">
             {% for key,anwser in anwsers %}
                 <div>
-                    <input id="question_anwser_{{key}}" type="text" name="question[anwsers][{{key}}]" value="{{anwser}}">
+                    <input class="form__input add-anwser" id="question_anwser_{{key}}" type="text" name="question[anwsers][{{key}}]" value="{{anwser}}">
                 </div>
             {% endfor %}
             </div>
@@ -40,9 +40,12 @@
 
             {{ form_widget(form.Submit, { 'label': 'Edit question', 'attr': {'class': 'quiz__button-submit'} }) }}
         {{ form_end(form) }}
+        
+    <div class="question__image">
         {% if image %}
-            <img src="{{ asset('uploads/images/' ~ image) }}" alt="no Image">
+            <img src="{{ asset('uploads/images/' ~ image) }}" height="500">
         {% endif %}
+    </div>
     </div>
 </div>
 {% endblock %}

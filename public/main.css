@@ -367,3 +367,13 @@ input[type='file'] {
   margin-right: 1rem;
   padding: 1rem 1.5rem;
 }
+
+.question__image {
+  position: absolute;
+  top: 0rem;
+  left: 35rem;
+}
+
+.question-position {
+  position: relative;
+}
