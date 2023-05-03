@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categories;
 use App\Entity\Questions;
 use App\Form\QuestionType;
+use App\Service\ImageResize;
 use App\Service\ImageSaver;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -17,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     #[Route('category/{catId}/question/{qId}', name: 'app_question_edit')]
-    public function index(int $catId, int $qId, EntityManagerInterface $em, Request $request, ImageSaver $imageSaver): Response
+    public function index(int $catId, int $qId, EntityManagerInterface $em, Request $request, ImageSaver $imageSaver, ImageResize $imageResize): Response
     {
 
         // check if user has permissions
@@ -37,6 +38,7 @@ class QuestionController extends AbstractController
                 $fs = new Filesystem();
                 $fs->remove($path);
                 $question->setImage($imageSaver->saveImage($form));
+                $imageResize->resizeImage($question->getImage());
             }
             $em->persist($form->getData());
             $em->flush();

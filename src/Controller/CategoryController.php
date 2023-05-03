@@ -6,6 +6,7 @@ use App\Entity\Categories;
 use App\Entity\Questions;
 use App\Entity\Quiz;
 use App\Form\QuestionType;
+use App\Service\ImageResize;
 use App\Service\ImageSaver;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
@@ -25,7 +26,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/category/{id}', name: 'app_category')]
-    public function index(int $id, Request $request, ImageSaver $imageSaver): Response
+    public function index(int $id, Request $request, ImageSaver $imageSaver, ImageResize $imageResize): Response
     {
 
         // check if user has permissions
@@ -46,6 +47,7 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $question->setImage($imageSaver->saveImage($form));
+            $imageResize->resizeImage($question->getImage());
             $this->em->persist($form->getData());
             $this->em->flush();
             return $this->redirect($request->getUri());
